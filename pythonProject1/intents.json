@@ -1,0 +1,20 @@
+{
+  "intents" : [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hi",
+        "hello"
+      ],
+      "responses": ["hey sir!", "what can i do for you"]
+    },
+    {
+      "tag" : "file",
+      "patterns" : [
+        "create a file",
+        "Create new file"
+      ],
+      "responses": []
+    }
+  ]
+}
