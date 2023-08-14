@@ -5,6 +5,14 @@
 #define USE_SERIAL Serial
 #include <Arduino.h>
 #include <HTTPClient.h>
+#include <FirebaseESP32.h>
+
+
+#define FIREBASE_HOST "arduino-healthcare-default-rtdb.europe-west1.firebasedatabase.app" // change here
+#define FIREBASE_AUTH "vyq2FySpjeHkn89Q0Ic1UYZIgfcnEL2OzKbavTxF"  // your private key
+FirebaseData firebaseData;
+String FirebaseVal;
+
 //#define uart_en 15
  #define led_3 4
  #define led_1 15
@@ -14,9 +22,11 @@
 const char* chatgpt_token = "Your_ChatGPT_Token";
 CloudSpeechClient::CloudSpeechClient(Authentication authentication) {
   this->authentication = authentication;
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
   WiFi.begin(ssid, password);
  //  while (WiFi.status() == WL_CONNECTED){ digitalWrite(led_3,1);}
   while (WiFi.status() != WL_CONNECTED) delay(1000);
+   Firebase.reconnectWiFi(true);  
   client.setCACert(root_ca);
  
  
@@ -117,6 +127,7 @@ if(strstr(chatgpt_Q, "hello")){
   }  
  if(strstr(chatgpt_Q, "remember me")){
    const char* message= chatgpt_Q;
+  
    Serial.println("Only ans:-");Serial.print(only_ans);
    Serial2.print(only_ans);
   } 
