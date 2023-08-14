@@ -110,46 +110,17 @@ digitalWrite(led_2,1);
 //digitalWrite(uart_en,HIGH);
   Serial.print("To ask again");
   }
-if(strstr(chatgpt_Q, "light off")){
-  digitalWrite(LED_BUILTIN,LOW);
-  Serial.println("Light's Off");
-  digitalWrite(15, LOW);
-delay(1);
-Serial2.println("Turning Light off");
-digitalWrite(led_1,1);
-digitalWrite(led_2,1);
-//digitalWrite(uart_en,HIGH);
-  Serial.print("To ask again");
+if(strstr(chatgpt_Q, "hello")){
+   const char* only_ans = "Hello, Our company provides three services: yanecode academy, yanecode digital and yanecode robotics how can we help you";
+   Serial.println("Only ans:-");Serial.print(only_ans);
+   Serial2.print(only_ans);
   }  
- if(strstr(chatgpt_Q, "blink on")){
-  HTTPClient http;
-
-        USE_SERIAL.print("[HTTP] begin...\n");
-        // configure traged server and url
-        //http.begin("https://www.howsmyssl.com/a/check", ca); //HTTPS
-        http.begin("http://example.com/index.html"); //HTTP
-
-        USE_SERIAL.print("[HTTP] GET...\n");
-        // start connection and send HTTP header
-        int httpCode = http.GET();
-
-        // httpCode will be negative on error
-        if(httpCode > 0) {
-            // HTTP header has been send and Server response header has been handled
-            USE_SERIAL.printf("[HTTP] GET... code: %d\n", httpCode);
-
-            // file found at server
-            if(httpCode == HTTP_CODE_OK) {
-                String payload = http.getString();
-                USE_SERIAL.println(payload);
-            }
-        } else {
-            USE_SERIAL.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
-        }
-
-        http.end();
+ if(strstr(chatgpt_Q, "remember me")){
+   const char* message= chatgpt_Q;
+   Serial.println("Only ans:-");Serial.print(only_ans);
+   Serial2.print(only_ans);
   } 
- else if(strstr(chatgpt_Q, "light on")==0 && strstr(chatgpt_Q, "light off") == 0 && strstr(chatgpt_Q, "blink on") ==0 ){
+ else if(strstr(chatgpt_Q, "coverse")==0 ){
   Serial.println("Asking Chat GPT");
   HTTPClient https;
 
